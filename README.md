@@ -1,304 +1,35 @@
-\# Space Invaders
+# Space Invaders (SFML)
 
+Space Invaders is a 2D vertical shooter game developed in C++ using the Simple and Fast Multimedia Library (SFML). The project recreates the classic arcade-style Space Invaders experience while extending it with modern gameplay elements such as wave-based progression, multiple enemy types, boss battles, parallax scrolling backgrounds, and a persistent high score system.
 
+## Project Overview
 
-A 2D vertical shooter game developed in \*\*C++\*\* using the \*\*Simple and Fast Multimedia Library (SFML)\*\*. This project recreates the classic arcade-style Space Invaders experience while extending it with modern gameplay elements such as multiple enemy types, boss encounters, parallax scrolling backgrounds, and a persistent high score system.
+The game is built using a scene-based architecture that manages transitions between the Main Menu, Gameplay, Pause Screen, High Score Screen, and Game Over Screen. Object-oriented programming principles are applied throughout the project to organize core components, including the player, enemies, bullets, power-ups, and user interface elements. This design keeps the code modular, readable, and easy to extend.
 
+## Features
 
+The game progresses through multiple waves and phases, with difficulty increasing as the player advances. Different enemy types such as Alpha, Beta, and Gamma are implemented, each having unique movement patterns and attack behaviors. Boss enemies appear at specific progression thresholds and feature increased health along with distinct movement logic. A persistent high score system stores player scores in a local text file named `highscores.txt`, which is loaded, sorted, and displayed to show the top ten scores. The visual experience is enhanced using a parallax scrolling background implemented with multiple layers to create a depth effect. Randomly generated power-ups assist the player during combat. The game also includes a mouse-interactive user interface with buttons for navigation such as Play, Pause, Continue, Quit, and Back.
 
----
+## Dependencies
 
+To build and run this project, a C++ compiler compatible with C++17 or later is required, such as MSVC, GCC, or Clang. The project depends on SFML version 2.5.1, specifically the Graphics, Window, and System modules.
 
+## Build and Run Instructions
 
-\## Project Overview
+SFML 2.5.1 must be downloaded and extracted to a known directory on the system. The Visual Studio solution file (`.sln`) should be opened to configure the project. The source code currently contains absolute include paths pointing to a specific user directory, so these paths must be updated or replaced by configuring the project settings. In Visual Studio, the SFML include directory should be added under C/C++ → General → Additional Include Directories, and the SFML library directory should be added under Linker → General → Additional Library Directories. The linker input must include `sfml-graphics.lib`, `sfml-window.lib`, and `sfml-system.lib`. Once configured, the project can be built using Ctrl + Shift + B and run using F5. The `Assets` folder and the `ARCADECLASSIC.TTF` font file must be present in the working or executable directory.
 
+## Controls
 
+The mouse is used to navigate menus and interact with user interface buttons. Keyboard controls include Arrow Keys or WASD for movement, Spacebar for shooting, and the Enter key to restart the game from the Game Over screen.
 
-The game is built using a scene-based architecture that cleanly separates different states of the application, including the Main Menu, Gameplay, Pause Screen, High Score display, and Game Over screen. Object-oriented programming principles are used throughout the codebase to manage game entities such as the player, enemies, bullets, power-ups, and UI components.
+## Project Structure
 
+The project includes an `Assets` directory containing images and font files, `main.cpp` as the application entry point and screen state manager, `GameScene.cpp` for the core gameplay loop and collision handling, `HighScoreScene.cpp` for high score file input and output, `Enemy.cpp` defining enemy behavior and shooting logic, `MainMenu.cpp` for menu handling, `Global.h` for global constants and configuration, and `README.md` for documentation.
 
+## Data Persistence
 
-This structure improves maintainability, scalability, and clarity of the overall game logic.
+The game generates two text files in the working directory. The file `highscores.txt` stores the top player scores, while `data.txt` logs player-related data for tracking and debugging purposes.
 
+## License
 
-
----
-
-
-
-\## Features
-
-
-
-\* \*\*Wave-Based Progression\*\*
-
-&nbsp; The game advances through multiple phases and levels. As phases are completed, difficulty increases and level transitions occur.
-
-
-
-\* \*\*Enemy Variety\*\*
-
-&nbsp; Includes multiple enemy types (Alpha, Beta, Gamma), each with distinct movement patterns, shooting behavior, and difficulty scaling.
-
-
-
-\* \*\*Boss Battles\*\*
-
-&nbsp; Boss enemies appear at specific progression thresholds (enemy types greater than 12), featuring increased health pools and unique movement logic.
-
-
-
-\* \*\*High Score System\*\*
-
-&nbsp; Player scores are stored in a local text file (`highscores.txt`). Scores are loaded, sorted, and displayed, showing the top 10 records.
-
-
-
-\* \*\*Parallax Background\*\*
-
-&nbsp; Implements a multi-layer scrolling background to create a depth effect during gameplay.
-
-
-
-\* \*\*Power-Up System\*\*
-
-&nbsp; Randomly generated power-ups enhance player abilities and assist during combat.
-
-
-
-\* \*\*User Interface System\*\*
-
-&nbsp; Mouse-interactive buttons enable navigation across menus including Play, Pause, Continue, Quit, and Back.
-
-
-
----
-
-
-
-\## Dependencies
-
-
-
-To build and run this project, the following are required:
-
-
-
-\* \*\*C++ Compiler\*\* compatible with C++17 or later (MSVC, GCC, or Clang)
-
-\* \*\*SFML 2.5.1\*\*, including the following modules:
-
-
-
-&nbsp; \* Graphics
-
-&nbsp; \* Window
-
-&nbsp; \* System
-
-
-
----
-
-
-
-\## Configuration and Build Instructions
-
-
-
-\### Important Note on Include Paths
-
-
-
-The source code contains absolute include paths referencing a specific user directory (for example, `C:\\Users\\rosha\\...`). Before compiling, these paths must be updated or replaced by configuring your IDE to reference your local SFML installation.
-
-
-
----
-
-
-
-\### Build Steps (Visual Studio)
-
-
-
-1\. Install \*\*SFML 2.5.1\*\* and extract it to a known directory.
-
-
-
-2\. Open the provided Visual Studio solution file (`.sln`).
-
-
-
-3\. Open \*\*Project Properties\*\* and configure the following:
-
-
-
-&nbsp;  \* \*\*C/C++ → General → Additional Include Directories\*\*
-
-&nbsp;    Add the path to:
-
-
-
-&nbsp;    ```
-
-&nbsp;    SFML-2.5.1/include
-
-&nbsp;    ```
-
-
-
-&nbsp;  \* \*\*Linker → General → Additional Library Directories\*\*
-
-&nbsp;    Add the path to:
-
-
-
-&nbsp;    ```
-
-&nbsp;    SFML-2.5.1/lib
-
-&nbsp;    ```
-
-
-
-&nbsp;  \* \*\*Linker → Input → Additional Dependencies\*\*
-
-&nbsp;    Add:
-
-
-
-&nbsp;    ```
-
-&nbsp;    sfml-graphics.lib
-
-&nbsp;    sfml-window.lib
-
-&nbsp;    sfml-system.lib
-
-&nbsp;    ```
-
-
-
-4\. Build the project using \*\*Ctrl + Shift + B\*\*.
-
-
-
----
-
-
-
-\### Assets Configuration
-
-
-
-Ensure the following resources are present in the executable directory or correctly configured as the project working directory:
-
-
-
-\* `Assets/` folder (sprites, textures, background images)
-
-\* `ARCADECLASSIC.TTF` font file
-
-
-
----
-
-
-
-\## Controls
-
-
-
-\### Mouse Controls
-
-
-
-\* Navigate menus
-
-\* Click UI buttons such as Play, Pause, Continue, Quit, and Back
-
-
-
-\### Keyboard Controls
-
-
-
-\* \*\*Movement:\*\* Arrow Keys or WASD
-
-\* \*\*Shoot:\*\* Spacebar
-
-\* \*\*Enter:\*\* Restart the game from the Game Over screen
-
-
-
----
-
-
-
-\## File Structure
-
-
-
-```
-
-Space-Invaders/
-
-│
-
-├── main.cpp              # Application entry point and screen state management
-
-├── GameScene.cpp         # Core gameplay loop, collisions, and level logic
-
-├── HighScoreScene.cpp    # High score file I/O and display logic
-
-├── Enemy.cpp             # Enemy behavior, movement, and shooting logic
-
-├── MainMenu.cpp          # Main menu screen handling
-
-├── Global.h              # Global constants and configuration
-
-├── Assets/               # Game assets (images, fonts)
-
-└── README.md
-
-```
-
-
-
----
-
-
-
-\## Data Persistence
-
-
-
-The game generates and maintains the following files in the working directory:
-
-
-
-1\. \*\*highscores.txt\*\*
-
-&nbsp;  Stores the top player scores used for ranking and display.
-
-
-
-2\. \*\*data.txt\*\*
-
-&nbsp;  Logs player-related data for tracking and debugging purposes.
-
-
-
----
-
-
-
-\## License
-
-
-
-This project is open-source and intended for educational use, demonstrating game development concepts, object-oriented design, and multimedia programming using C++ and SFML.
-
-
-
+This project is open-source and intended for educational purposes, demonstrating C++ game development concepts, object-oriented programming, and multimedia application design using SFML.
